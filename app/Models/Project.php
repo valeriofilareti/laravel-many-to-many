@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Tag;
 
 class Project extends Model
 {
@@ -19,5 +20,9 @@ class Project extends Model
 
         return $this->belongsTo(Category::class);
 
+    }
+
+    public function tags() {
+        return $this->belongsToMany(Tag::class);
     }
 }

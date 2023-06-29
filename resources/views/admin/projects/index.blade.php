@@ -16,18 +16,30 @@
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Category</th>
+                <th scope="col">Tags</th>
                 <th style="min-width: 130px" scope="col">Date</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
+
                 @foreach ($projects as $project)
 
                 <tr>
                     <th scope="row">{{$project->id}}</th>
                     <td>{{$project->name}}</td>
                     <td>{{$project->description}}</td>
-                    <td>{{$project->category->name}}</td>
+                    <td>
+                        <span class="badge btn-sm btn-secondary text-bg-light my-1">{{$project->category?->name}}</span>
+                    </td>
+                    <td>
+                        @forelse ($project->tags as $tag)
+                            <span  class="badge btn-sm btn-secondary text-bg-dark my-1">{{$tag->name}}</span>
+                        @empty
+                            -no tags-
+                        @endforelse
+                    </td>
+
                     <td>{{$project->creation_date}}</td>
                     <td>
                         <div class="btn d-flex">
